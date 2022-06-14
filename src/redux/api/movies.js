@@ -91,7 +91,7 @@ const movies = [
 	{
 		id: "15",
 		title: "Dracula",
-		category: "Ghost",
+		category: "Horror",
 		likes: 22,
 		dislikes: 12
 	}

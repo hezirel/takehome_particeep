@@ -1,6 +1,14 @@
 import React from "react";
 
+import { 
+	useDispatch
+} from "react-redux";
+
 import PropTypes from "prop-types";
+
+import {
+	remove
+} from "../../redux/features/movies/movieSlice";
 
 const likeSvg = (
 	<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -16,13 +24,19 @@ const trashSvg = (
 
 const MovieCard = ({ movie }) => {
 	
+	const dispatch = useDispatch();
+
+	const handleRemove = () => {
+		dispatch(remove(movie.id));
+	};
+
 	return (
 		<div className="movie-card">
 			<b className="movieCardTitle">{movie.title}</b>
 			<span className="movieCardCategory">{movie.category}</span>
 			<div className="movieCardUIControls">
 				<button className="movieCardLikeButton">{likeSvg}</button>
-				<button className="movieCardRemoveButton">{trashSvg}</button>
+				<button className="movieCardRemoveButton" onClick={handleRemove}>{trashSvg}</button>
 			</div>
 		</div>
 	);
