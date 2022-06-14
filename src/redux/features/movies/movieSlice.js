@@ -10,6 +10,9 @@ const initialState = {
 	tagsActive: [],
 	likedMovies: [],
 	dislikedMovies: [],
+	pageSize: 4,
+	page: 0,
+	pages: 0,
 };
 
 const movieSlice = createSlice({
@@ -54,6 +57,16 @@ const movieSlice = createSlice({
 				state.dislikedMovies.push(payload);
 				target(payload).dislikes++;
 			}
+		},
+		setPage: (state, {payload}) => {
+			state.page = payload;
+		},
+		setPageSize: (state, {payload}) => {
+			state.pageSize = payload;
+			state.pages = Math.ceil(state.movies.length / state.pageSize);
+		},
+		setPagesList: (state, {payload}) => {
+			state.pages = payload;
 		}
 	},
 	extraReducers: (builder) => {
@@ -62,6 +75,7 @@ const movieSlice = createSlice({
 			(state, action) => {
 				state.movies = action.payload;
 				state.tagsPool = Array.from(new Set(action.payload.map(movie => movie.category)));
+				state.pages = Math.ceil(state.movies.length / state.pageSize);
 			});
 	}
 });
@@ -70,7 +84,10 @@ export const {
 	filter,
 	remove,
 	toggleLike,
-	toggleDislike
+	toggleDislike,
+	setPage,
+	setPageSize,
+	setPagesList
 } = movieSlice.actions;
 
 export default movieSlice.reducer;

@@ -8,6 +8,7 @@ import {
 
 import Filters from "./filters/Filters";
 import Movies from "./movies/Movies";
+import Controls from "./controls/Controls";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
 				data && <> 
 					<Filters />
 					<Movies />
+					<Controls />
 				</>
 			}
 		</>

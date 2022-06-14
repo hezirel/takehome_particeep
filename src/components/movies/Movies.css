@@ -33,15 +33,19 @@
     height: 2rem;
 }
 
-.movieCardLikeButton svg {
-    transform: scaleX(-1);
-}
-
 .liked svg {
     color: green;
+    transform: scaleX(-1);
 }
 
 .disliked svg {
     color: red;
-    transform: scaleY(-1);
+    transform: scale(-1, -1);
+}
+
+.pageControls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
