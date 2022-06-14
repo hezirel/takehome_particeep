@@ -15,7 +15,15 @@ const movieSlice = createSlice({
 	initialState,
 	reducers: {
 		filter: (state, action) => {
-			state.tagsActive.push(action.payload);
+			state.tagsActive.includes(action.payload) ? 
+				state.tagsActive.splice(state.tagsActive.indexOf(action.payload), 1) :
+				state.tagsActive.push(action.payload);
+		},
+		remove: (state, action) => {
+			state.movies = state.movies.filter(movie => movie.id !== action.payload);
+		},
+		toggleLike: (state, action) => {
+			state.movies.find(movie => movie.id === action.payload).likes++;
 		}
 	},
 	extraReducers: (builder) => {

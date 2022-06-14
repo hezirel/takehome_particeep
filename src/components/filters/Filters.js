@@ -18,7 +18,8 @@ const Filters = () => {
 
 	const dispatch = useDispatch();
 
-	const filters = useSelector(state => state.movies.tagsPool);
+	const tagsList = useSelector(state => state.movies.tagsPool);
+	const tagsActive = useSelector(state => state.movies.tagsActive);
 
 	const handleSubmit = ({ target: { outerText: tag}}) => {
 		dispatch(filter(tag));
@@ -27,8 +28,12 @@ const Filters = () => {
 	return (
 		<div className="filters">
 			{
-				filters && filters.map((filter, index) => (
-					<button key={index} onClick={handleSubmit}>
+				tagsList && tagsList.map((filter, index) => (
+					<button 
+						key={index}
+						onClick={handleSubmit}
+						className={tagsActive.includes(filter) ? "active" : "tags"}
+					>
 						{filter}
 					</button>
 				))

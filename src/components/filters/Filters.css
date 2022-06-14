@@ -11,9 +11,17 @@
 .filters button {
     font-size: 1.5rem;
     font-weight: bold;
-    color: lightblue;
     padding: 10px;
     border-radius: 5px;
     border: solid 1px ghostwhite;
+}
+
+.tags {
+    color: lightblue;
     background-color: black;
+}
+
+.active {
+    color: black;
+    background-color: lightblue;
 }
