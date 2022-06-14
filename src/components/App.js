@@ -21,9 +21,7 @@ function App() {
 					<Filters />
 					<Movies />
 				</>
-					&& data.map(movie => <div key={movie.id}>{movie.title}</div>)
 			}
-
 		</>
 	);
 }

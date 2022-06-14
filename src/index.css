@@ -15,5 +15,5 @@ code {
 #root {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.3fr 1fr;
+  grid-template-rows: 0.4fr 1fr;
 }

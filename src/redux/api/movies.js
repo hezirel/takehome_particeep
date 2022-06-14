@@ -62,6 +62,6 @@ const movies = [
 	},
 ];
 
-const movies$ = new Promise((resolve) => setTimeout(resolve, 500, {data: movies}));
+const movies$ = new Promise((resolve) => setTimeout(resolve, 1000, {data: movies}));
 
 export default movies$;
