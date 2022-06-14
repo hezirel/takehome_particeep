@@ -1,14 +1,16 @@
 import React from "react";
 
 import { 
-	useDispatch
+	useDispatch,
+	useSelector
 } from "react-redux";
 
 import PropTypes from "prop-types";
 
 import {
 	remove,
-	toggleLike
+	toggleLike,
+	toggleDislike
 } from "../../redux/features/movies/movieSlice";
 
 const likeSvg = (
@@ -26,6 +28,8 @@ const trashSvg = (
 const MovieCard = ({ movie }) => {
 	
 	const dispatch = useDispatch();
+	const likedMovies = useSelector(state => state.movies.likedMovies);
+	const dislikedMovies = useSelector(state => state.movies.dislikedMovies);
 
 	const handleRemove = () => {
 		dispatch(remove(movie.id));
@@ -35,12 +39,20 @@ const MovieCard = ({ movie }) => {
 		dispatch(toggleLike(movie.id));
 	};
 
+	const handleDislike = () => {
+		dispatch(toggleDislike(movie.id));
+	};
+
 	return (
 		<div className="movie-card">
 			<b className="movieCardTitle">{movie.title}</b>
 			<span className="movieCardCategory">{movie.category}</span>
 			<div className="movieCardUIControls">
-				<button className="movieCardLikeButton" onClick={handleLike}>{likeSvg}</button>
+				{
+					(likedMovies.includes(movie.id) && <button className="liked" onClick={handleDislike}>{likeSvg}</button>)
+					|| (dislikedMovies.includes(movie.id) && <button className="disliked" onClick={handleDislike}>{likeSvg}</button>)
+					|| <button className="movieCardLikeButton" onClick={handleLike}>{likeSvg}</button>
+				}
 				<button className="movieCardRemoveButton" onClick={handleRemove}>{trashSvg}</button>
 			</div>
 		</div>

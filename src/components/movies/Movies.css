@@ -32,3 +32,16 @@
     width: 3rem;
     height: 2rem;
 }
+
+.movieCardLikeButton svg {
+    transform: scaleX(-1);
+}
+
+.liked svg {
+    color: green;
+}
+
+.disliked svg {
+    color: red;
+    transform: scaleY(-1);
+}
