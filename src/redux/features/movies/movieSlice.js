@@ -22,8 +22,7 @@ const movieSlice = createSlice({
 		remove: (state, action) => {
 			const cat = state.movies.find(movie => movie.id === action.payload).category;
 			state.movies = state.movies.filter(movie => movie.id !== action.payload);
-			state.movies.some(movie => movie.category === cat) ? 
-				null : 
+			!state.movies.some(movie => movie.category === cat) &&
 				(state.tagsPool.splice(state.tagsPool.indexOf(cat), 1),
 				state.tagsActive.splice(state.tagsActive.indexOf(cat), 1));
 		},
