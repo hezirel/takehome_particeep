@@ -1,4 +1,10 @@
 .filters {
     background-color: rgb(69, 160, 225);
-    display: flex;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }

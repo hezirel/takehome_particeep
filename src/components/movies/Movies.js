@@ -1,9 +1,9 @@
 import React from "react";
 
 import "./Movies.css";
+import MovieCard from "./MovieCard";
 
 import { useSelector } from "react-redux";
-
 
 const Movies = () => {
 
@@ -12,14 +12,7 @@ const Movies = () => {
 	return (
 		<div className="movies">
 			{
-				movies && movies.map(movie => {
-					return (
-						<div key={movie.id} className="movie">
-							<div className="movie__title">{movie.title}</div>
-							<div className="movie__year">{movie.year}</div>
-						</div>
-					);
-				})
+				movies && movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
 			}
 		</div>
 	);

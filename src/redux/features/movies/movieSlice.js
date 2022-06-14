@@ -20,6 +20,7 @@ const movieSlice = createSlice({
 			api.endpoints.GetMovies.matchFulfilled,
 			(state, action) => {
 				state.movies = action.payload;
+				state.filters = Array.from(new Set(action.payload.map(movie => movie.category)));
 			});
 	}
 });
