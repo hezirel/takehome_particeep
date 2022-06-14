@@ -7,7 +7,8 @@ import {
 import PropTypes from "prop-types";
 
 import {
-	remove
+	remove,
+	toggleLike
 } from "../../redux/features/movies/movieSlice";
 
 const likeSvg = (
@@ -30,12 +31,16 @@ const MovieCard = ({ movie }) => {
 		dispatch(remove(movie.id));
 	};
 
+	const handleLike = () => {
+		dispatch(toggleLike(movie.id));
+	};
+
 	return (
 		<div className="movie-card">
 			<b className="movieCardTitle">{movie.title}</b>
 			<span className="movieCardCategory">{movie.category}</span>
 			<div className="movieCardUIControls">
-				<button className="movieCardLikeButton">{likeSvg}</button>
+				<button className="movieCardLikeButton" onClick={handleLike}>{likeSvg}</button>
 				<button className="movieCardRemoveButton" onClick={handleRemove}>{trashSvg}</button>
 			</div>
 		</div>

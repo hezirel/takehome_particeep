@@ -24,7 +24,8 @@ const movieSlice = createSlice({
 			state.movies = state.movies.filter(movie => movie.id !== action.payload);
 			state.movies.some(movie => movie.category === cat) ? 
 				null : 
-				(state.tagsPool.splice(state.tagsPool.indexOf(cat), 1), state.tagsActive.splice(state.tagsActive.indexOf(cat), 1));
+				(state.tagsPool.splice(state.tagsPool.indexOf(cat), 1),
+				state.tagsActive.splice(state.tagsActive.indexOf(cat), 1));
 		},
 		toggleLike: (state, action) => {
 			state.movies.find(movie => movie.id === action.payload).likes++;
