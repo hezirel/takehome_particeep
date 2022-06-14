@@ -2,13 +2,13 @@ const movies = [
 	{
 		id: "1",
 		title: "Oceans 8",
-		category: "Comedy",
+		category: "Heist",
 		likes: 4,
 		dislikes: 1
 	}, {
 		id: "2",
 		title: "Midnight Sun",
-		category: "Comedy",
+		category: "Drama",
 		likes: 2,
 		dislikes: 0
 	}, {
@@ -20,31 +20,31 @@ const movies = [
 	}, {
 		id: "4",
 		title: "Sans un bruit",
-		category: "Thriller",
+		category: "Murder",
 		likes: 6,
 		dislikes: 6
 	}, {
 		id: "5",
 		title: "Creed II",
-		category: "Drame",
+		category: "Boxing",
 		likes: 16,
 		dislikes: 2
 	}, {
 		id: "6",
 		title: "Pulp Fiction",
-		category: "Thriller",
+		category: "Classic",
 		likes: 11,
 		dislikes: 3
 	}, {
 		id: "7",
-		title: "Pulp Fiction",
-		category: "Thriller",
+		title: "Django Unchained",
+		category: "Tarentino",
 		likes: 12333,
 		dislikes: 32
 	}, {
 		id: "8",
 		title: "Seven",
-		category: "Thriller",
+		category: "Number",
 		likes: 2,
 		dislikes: 1
 	}, {
@@ -56,10 +56,45 @@ const movies = [
 	}, {
 		id: "10",
 		title: "Gone Girl",
-		category: "Thriller",
+		category: "Horror",
 		likes: 22,
 		dislikes: 12
 	},
+	{
+		id: "11",
+		title: "Moonwalking my life",
+		category: "Documentary",
+		likes: 22,
+		dislikes: 12
+	},
+	{
+		id: "12",
+		title: "H2G2",
+		category: "Sci-fi",
+		likes: 22,
+		dislikes: 12
+	},
+	{
+		id: "13",
+		title: "Harry Potter",
+		category: "Magical",
+		likes: 22,
+		dislikes: 12
+	},
+	{
+		id: "14",
+		title: "Las Vegas Parano",
+		category: "Noir",
+		likes: 22,
+		dislikes: 12
+	},
+	{
+		id: "15",
+		title: "Dracula",
+		category: "Ghost",
+		likes: 22,
+		dislikes: 12
+	}
 ];
 
 const movies$ = new Promise((resolve) => setTimeout(resolve, 1000, {data: movies}));

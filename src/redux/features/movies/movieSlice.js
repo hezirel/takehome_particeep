@@ -6,21 +6,24 @@ import api from "../../api/fetch";
 
 const initialState = {
 	movies: false,
-	filters: false
+	tagsPool: false,
+	tagsActive: [],
 };
 
 const movieSlice = createSlice({
 	name: "movie",
 	initialState,
 	reducers: {
-		filter: (state, action) => state.filters.push(action.payload),
+		filter: (state, action) => {
+			state.tagsActive.push(action.payload);
+		}
 	},
 	extraReducers: (builder) => {
 		builder.addMatcher(
 			api.endpoints.GetMovies.matchFulfilled,
 			(state, action) => {
 				state.movies = action.payload;
-				state.filters = Array.from(new Set(action.payload.map(movie => movie.category)));
+				state.tagsPool = Array.from(new Set(action.payload.map(movie => movie.category)));
 			});
 	}
 });

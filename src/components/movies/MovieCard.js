@@ -2,9 +2,9 @@ import React from "react";
 
 import PropTypes from "prop-types";
 
-const MovieCard = ({ key, movie }) => {
+const MovieCard = ({ movie }) => {
 	return (
-		<li key={key} className="movie-card">
+		<li className="movie-card">
 			<div className="movieCardTitle">{movie.title}</div>
 		</li>
 	);
@@ -12,7 +12,6 @@ const MovieCard = ({ key, movie }) => {
 };
 
 MovieCard.propTypes = {
-	key: PropTypes.string.isRequired,
 	movie: PropTypes.object
 };
 

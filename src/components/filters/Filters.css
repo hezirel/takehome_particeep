@@ -1,10 +1,19 @@
 .filters {
-    background-color: rgb(69, 160, 225);
+    background-color: hsla(233, 92%, 31%, 0.31);
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     list-style: none;
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+.filters button {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: lightblue;
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px ghostwhite;
+    background-color: black;
 }
