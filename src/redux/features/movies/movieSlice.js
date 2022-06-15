@@ -20,10 +20,14 @@ const movieSlice = createSlice({
 	initialState,
 	reducers: {
 		filter: (state, action) => {
-
 			state.tagsActive.includes(action.payload) ? 
 				state.tagsActive.splice(state.tagsActive.indexOf(action.payload), 1) :
 				state.tagsActive.push(action.payload);
+
+			state.pages = state.tagsActive.length ?
+				Math.ceil(state.movies.filter(movie => state.tagsActive.includes(movie.category)).length / state.pageSize) :
+				Math.ceil(state.movies.length / state.pageSize);
+			state.page = state.tagsActive.length ? 0 : state.page;
 
 		},
 		remove: (state, action) => {
