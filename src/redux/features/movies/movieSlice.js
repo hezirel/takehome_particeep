@@ -38,6 +38,10 @@ const movieSlice = createSlice({
 			!state.movies.some(movie => movie.category === cat) &&
 				(state.tagsPool.splice(state.tagsPool.indexOf(cat), 1),
 				state.tagsActive.splice(state.tagsActive.indexOf(cat), 1));
+
+			state.pages = state.tagsActive.length ?
+				Math.ceil(state.movies.filter(movie => state.tagsActive.includes(movie.category)).length / state.pageSize) :
+				Math.ceil(state.movies.length / state.pageSize);
 		},
 		toggleLike: (state, { payload }) => {
 			const target = (id) => state.movies.find(movie => movie.id === id);
@@ -67,7 +71,9 @@ const movieSlice = createSlice({
 		},
 		setPageSize: (state, {payload}) => {
 			state.pageSize = payload;
-			state.pages = Math.ceil(state.movies.length / state.pageSize);
+			state.pages = state.tagsActive.length ?
+				Math.ceil(state.movies.filter(movie => state.tagsActive.includes(movie.category)).length / state.pageSize) :
+				Math.ceil(state.movies.length / state.pageSize);
 		},
 		setPagesList: (state, {payload}) => {
 			state.pages = payload;
