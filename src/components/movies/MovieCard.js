@@ -43,8 +43,15 @@ const MovieCard = ({ movie }) => {
 		dispatch(toggleDislike(movie.id));
 	};
 
+	const ratio = (movie.dislikes / movie.likes) * 100;
+
 	return (
-		<div className="movie-card">
+		<div
+			className="movie-card"
+			style={{
+				backgroundImage: `linear-gradient(to right, green 0 ${ratio}%, red ${ratio}% 100%)`,
+			}}
+		>
 			<b className="movieCardTitle">{movie.title}</b>
 			<span className="movieCardCategory">{movie.category}</span>
 			<div className="movieCardUIControls">
