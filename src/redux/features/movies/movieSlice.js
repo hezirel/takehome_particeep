@@ -3,12 +3,12 @@ import {
 } from "@reduxjs/toolkit";
 
 import api from "../../api/fetch";
-import {
-	refresh
-} from "./cursorUtils";
+
+import { refresh } from "./cursorUtils";
 
 const initialState = {
 	movies: false,
+	bak: false,
 	cursor: false,
 	tagsPool: false,
 	tagsActive: [],
@@ -18,7 +18,6 @@ const initialState = {
 	page: 0,
 	pages: 1,
 };
-
 
 const movieSlice = createSlice({
 	name: "movie",
@@ -77,6 +76,7 @@ const movieSlice = createSlice({
 			api.endpoints.GetMovies.matchFulfilled,
 			(state, action) => {
 				state.movies = action.payload;
+				state.bak = action.payload;
 				state.tagsPool = Array.from(new Set(action.payload.map(movie => movie.category)));
 				refresh(state);
 			});
