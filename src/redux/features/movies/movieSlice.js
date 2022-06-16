@@ -88,7 +88,6 @@ export const {
 	filter,
 	remove,
 	toggleLike,
-	toggleDislike,
 	setPage,
 	setPageSize,
 } = movieSlice.actions;
