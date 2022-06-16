@@ -7,6 +7,7 @@ import api from "../../api/fetch";
 
 const initialState = {
 	movies: false,
+	cursor: false,
 	tagsPool: false,
 	tagsActive: [],
 	likedMovies: [],
@@ -17,6 +18,7 @@ const initialState = {
 };
 
 const selectPageSize = state => state.pageSize;
+const selectActivePage = state => state.page;
 const selectActiveFilters = state => state.tagsActive;
 const selectMovies = state => state.movies;
 
@@ -25,10 +27,22 @@ const computePagination = createSelector(
 	selectActiveFilters,
 	selectMovies,
 	(pageSize, tagsActive, movies) => {
-		console.log(pageSize, tagsActive, movies);
 		return tagsActive.length ?
 			Math.ceil(movies.filter(movie => tagsActive.includes(movie.category)).length / pageSize)
 			: Math.ceil(movies.length / pageSize);
+	}
+);
+
+const computeCursor = createSelector(
+	selectPageSize,
+	selectActivePage,
+	selectMovies,
+	selectActiveFilters,
+	(pageSize, activePage, movies, activeFilters) => {
+		return (
+			movies.filter(m => activeFilters.length ? activeFilters.includes(m.category) : true)
+				.slice(activePage * pageSize, (activePage + 1) * pageSize)
+		);
 	}
 );
 
@@ -43,6 +57,7 @@ const movieSlice = createSlice({
 
 			state.pages = computePagination(state);
 			state.page = state.page > state.pages - 1 ? state.pages - 1 : state.page;
+			state.cursor = computeCursor(state);
 		},
 		remove: (state, action) => {
 
@@ -55,6 +70,7 @@ const movieSlice = createSlice({
 
 			state.pages = computePagination(state);
 			state.page = state.page > state.pages - 1 ? state.pages - 1 : state.page;
+			state.cursor = computeCursor(state);
 		},
 		toggleLike: (state, { payload }) => {
 			const target = (id) => state.movies.find(movie => movie.id === id);
@@ -81,10 +97,12 @@ const movieSlice = createSlice({
 		},
 		setPage: (state, {payload}) => {
 			state.page = payload;
+			state.cursor = computeCursor(state);
 		},
 		setPageSize: (state, {payload}) => {
 			state.pageSize = payload;
 			state.pages = computePagination(state);
+			state.cursor = computeCursor(state);
 		}
 	},
 	extraReducers: (builder) => {
@@ -93,7 +111,8 @@ const movieSlice = createSlice({
 			(state, action) => {
 				state.movies = action.payload;
 				state.tagsPool = Array.from(new Set(action.payload.map(movie => movie.category)));
-				state.pages = Math.ceil(state.movies.length / state.pageSize);
+				state.pages = computePagination(state);
+				state.cursor = computeCursor(state);
 			});
 	}
 });
