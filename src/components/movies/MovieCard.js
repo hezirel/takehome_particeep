@@ -53,7 +53,7 @@ const MovieCard = ({ movie }) => {
 			}}
 		>
 			<b className="movieCardTitle">{movie.title}</b>
-			<span className="movieCardCategory">{movie.category}</span>
+			<span className="movieCardCategory">{movie.category} : ID{movie.id}</span>
 			<div className="movieCardUIControls">
 				{
 					(likedMovies.includes(movie.id) && <button className="liked" onClick={handleDislike}>{likeSvg}</button>)
