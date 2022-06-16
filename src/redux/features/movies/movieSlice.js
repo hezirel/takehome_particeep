@@ -46,6 +46,12 @@ const computeCursor = createSelector(
 	}
 );
 
+const refresh = (state) => {
+	state.pages = computePagination(state);
+	state.page = state.page > state.pages - 1 ? state.pages - 1 : state.page;
+	state.cursor = computeCursor(state);
+};
+
 const movieSlice = createSlice({
 	name: "movie",
 	initialState,
@@ -55,9 +61,7 @@ const movieSlice = createSlice({
 				state.tagsActive.splice(state.tagsActive.indexOf(action.payload), 1) :
 				state.tagsActive.push(action.payload);
 
-			state.pages = computePagination(state);
-			state.page = state.page > state.pages - 1 ? state.pages - 1 : state.page;
-			state.cursor = computeCursor(state);
+			refresh(state);
 		},
 		remove: (state, action) => {
 
@@ -68,41 +72,35 @@ const movieSlice = createSlice({
 				(state.tagsPool.splice(state.tagsPool.indexOf(cat), 1),
 				state.tagsActive.splice(state.tagsActive.indexOf(cat), 1));
 
-			state.pages = computePagination(state);
-			state.page = state.page > state.pages - 1 ? state.pages - 1 : state.page;
-			state.cursor = computeCursor(state);
+			refresh(state);
 		},
 		toggleLike: (state, { payload }) => {
-			const target = (id) => state.movies.find(movie => movie.id === id);
-
-			if (state.likedMovies.includes(payload)) {
-				state.likedMovies.splice(state.likedMovies.indexOf(payload), 1);
-				target(payload).likes--;
-			} else {
-				state.likedMovies.push(payload);
-				target(payload).likes++;
+			const target = state.movies.find(movie => movie.id === payload.id);
+			switch(payload.value) {
+			case 1:
+				state.likedMovies.push(payload.id);
+				target.likes++;
+				break;
+			case -1:
+				state.dislikedMovies.push(payload.id);
+				state.likedMovies.splice(state.likedMovies.indexOf(payload.id), 1);
+				target.likes--;
+				target.dislikes++;
+				break;
+			default:
+				state.dislikedMovies.splice(state.dislikedMovies.indexOf(payload.id), 1);
+				target.dislikes--;
+				break;
 			}
-		},
-		toggleDislike: (state, {payload}) => {
-			const target = (id) => state.movies.find(movie => movie.id === id);
-
-			if (state.dislikedMovies.includes(payload)) {
-				state.dislikedMovies.splice(state.dislikedMovies.indexOf(payload), 1);
-				target(payload).dislikes--;
-			} else {
-				state.likedMovies.splice(state.likedMovies.indexOf(payload), 1);
-				state.dislikedMovies.push(payload);
-				target(payload).dislikes++;
-			}
+			refresh(state);
 		},
 		setPage: (state, {payload}) => {
 			state.page = payload;
-			state.cursor = computeCursor(state);
+			refresh(state);
 		},
 		setPageSize: (state, {payload}) => {
 			state.pageSize = payload;
-			state.pages = computePagination(state);
-			state.cursor = computeCursor(state);
+			refresh(state);
 		}
 	},
 	extraReducers: (builder) => {
@@ -111,8 +109,7 @@ const movieSlice = createSlice({
 			(state, action) => {
 				state.movies = action.payload;
 				state.tagsPool = Array.from(new Set(action.payload.map(movie => movie.category)));
-				state.pages = computePagination(state);
-				state.cursor = computeCursor(state);
+				refresh(state);
 			});
 	}
 });
