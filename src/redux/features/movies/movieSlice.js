@@ -50,7 +50,7 @@ const movieSlice = createSlice({
 				state.likedMovies.push(payload.id);
 				target.likes++;
 				break;
-			case 2:
+			case -1:
 				state.dislikedMovies.push(target.id);
 				state.likedMovies.splice(state.likedMovies.indexOf(payload.id), 1);
 				target.likes--;

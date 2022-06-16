@@ -38,20 +38,20 @@ const MovieCard = ({ movie }) => {
 		dispatch(toggleLike({id: movie.id, value}));
 	};
 
-	const ratio = (movie.dislikes / movie.likes) * 100;
+	const ratio = movie.likes / (movie.likes + movie.dislikes);
 
 	return (
 		<div
 			className="movie-card"
 			style={{
-				backgroundImage: `linear-gradient(to bottom, green 0% ${ratio}%, red ${ratio}% 100%)`,
+				backgroundImage: `linear-gradient(to bottom, green 0% ${ratio*100}%, red ${100-(ratio*100)}% 100%)`,
 			}}
 		>
 			<b className="movieCardTitle">{movie.title}</b>
 			<span className="movieCardCategory">{movie.category} : ID{movie.id}</span>
 			<div className="movieCardUIControls">
 				{
-					(likedMovies.includes(movie.id) && <button className="liked" onClick={() => handleLike(2)}>{likeSvg}</button>)
+					(likedMovies.includes(movie.id) && <button className="liked" onClick={() => handleLike(-1)}>{likeSvg}</button>)
 					|| (dislikedMovies.includes(movie.id) && <button className="disliked" onClick={() => handleLike(0)}>{likeSvg}</button>)
 					|| <button className="movieCardLikeButton" onClick={() => handleLike(1)}>{likeSvg}</button>
 				}
