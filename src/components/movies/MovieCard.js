@@ -35,7 +35,7 @@ const MovieCard = ({ movie }) => {
 	};
 
 	const handleLike = (value) => {
-		dispatch(toggleLike({id: movie.id, value}));
+		dispatch(toggleLike({id: movie.id, type: value}));
 	};
 
 	const ratio = (movie.dislikes / movie.likes) * 100;
@@ -44,16 +44,16 @@ const MovieCard = ({ movie }) => {
 		<div
 			className="movie-card"
 			style={{
-				backgroundImage: `linear-gradient(to right, green 0 ${ratio}%, red ${ratio}% 100%)`,
+				backgroundImage: `linear-gradient(to left, green 0% ${ratio}%, red ${ratio}% 100%)`,
 			}}
 		>
 			<b className="movieCardTitle">{movie.title}</b>
 			<span className="movieCardCategory">{movie.category} : ID{movie.id}</span>
 			<div className="movieCardUIControls">
 				{
-					(likedMovies.includes(movie.id) && <button className="liked" onClick={() => handleLike(-1)}>{likeSvg}</button>)
-					|| (dislikedMovies.includes(movie.id) && <button className="disliked" onClick={() => handleLike(0)}>{likeSvg}</button>)
-					|| <button className="movieCardLikeButton" onClick={() => handleLike(1)}>{likeSvg}</button>
+					(likedMovies.includes(movie.id) && <button className="liked" onClick={() => handleLike("dislike")}>{likeSvg}</button>)
+					|| (dislikedMovies.includes(movie.id) && <button className="disliked" onClick={() => handleLike("null")}>{likeSvg}</button>)
+					|| <button className="movieCardLikeButton" onClick={() => handleLike("like")}>{likeSvg}</button>
 				}
 				<button className="movieCardRemoveButton" onClick={handleRemove}>{trashSvg}</button>
 			</div>

@@ -44,12 +44,13 @@ const movieSlice = createSlice({
 		},
 		toggleLike: (state, { payload }) => {
 			const target = state.movies.find(movie => movie.id === payload.id);
-			switch(payload.value) {
-			case 1:
+
+			switch(payload.type) {
+			case "like":
 				state.likedMovies.push(payload.id);
 				target.likes++;
 				break;
-			case -1:
+			case "dislike":
 				state.dislikedMovies.push(payload.id);
 				state.likedMovies.splice(state.likedMovies.indexOf(payload.id), 1);
 				target.likes--;
