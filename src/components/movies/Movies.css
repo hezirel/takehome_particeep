@@ -41,8 +41,10 @@
 }
 
 .pageControls {
-    display: flex;
-    flex-direction: row;
+    display: grid;
     justify-content: space-around;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
     align-items: center;
+    padding: 1rem;
 }

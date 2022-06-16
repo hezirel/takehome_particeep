@@ -23,7 +23,7 @@ const Filters = () => {
 
 	return (
 		<div className="pageControls">
-			{activePage > 0 && <button onClick={() => dispatch(setPage(activePage-1))}>Prev</button>}
+			<button disabled={activePage <= 0} onClick={() => dispatch(setPage(activePage-1))}>Prev</button>
 			<span>
 				<label>Page size: </label>
 				<select
@@ -40,7 +40,7 @@ const Filters = () => {
 					<option value={12}>12</option>
 				</select>
 			</span>
-			{activePage < pages-1 && <button onClick={() => dispatch(setPage(activePage+1))}>Next</button>}
+			<button disabled={activePage >= pages-1} onClick={() => dispatch(setPage(activePage+1))}>Next</button>
 		</div>
 	);
 };
