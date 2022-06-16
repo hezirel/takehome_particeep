@@ -48,3 +48,11 @@
     align-items: center;
     padding: 1rem;
 }
+
+.pageControls span {
+    display: grid;
+    font-size: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    
+}
