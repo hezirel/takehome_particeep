@@ -1,5 +1,6 @@
 import {
 	createSlice,
+	createSelector
 } from "@reduxjs/toolkit";
 
 import api from "../../api/fetch";
@@ -15,22 +16,21 @@ const initialState = {
 	pages: 1,
 };
 
-/* const pagesListSelector = createSelector(
-	state => state.movies,
-	state => state.movies.pageSize,
-	(movies, pageSize) => Math.ceil(movies.length / pageSize)
-);
+const selectPageSize = state => state.pageSize;
+const selectActiveFilters = state => state.tagsActive;
+const selectMovies = state => state.movies;
 
-const moviesSelector = createSelector(
-	state => state.movies,
-	state => state.movies.tagsActive,
-	(movies, tagsActive) => {
-		if (tagsActive.length) {
-			return movies.filter(movie => tagsActive.includes(movie.category));
-		} else {
-			return movies;
-		}
-	}); */
+const computePagination = createSelector(
+	selectPageSize,
+	selectActiveFilters,
+	selectMovies,
+	(pageSize, tagsActive, movies) => {
+		console.log(pageSize, tagsActive, movies);
+		return tagsActive.length ?
+			Math.ceil(movies.filter(movie => tagsActive.includes(movie.category)).length / pageSize)
+			: Math.ceil(movies.length / pageSize);
+	}
+);
 
 const movieSlice = createSlice({
 	name: "movie",
@@ -41,9 +41,7 @@ const movieSlice = createSlice({
 				state.tagsActive.splice(state.tagsActive.indexOf(action.payload), 1) :
 				state.tagsActive.push(action.payload);
 
-			state.pages = state.tagsActive.length ?
-				Math.ceil(state.movies.filter(movie => state.tagsActive.includes(movie.category)).length / state.pageSize) :
-				Math.ceil(state.movies.length / state.pageSize);
+			state.pages = computePagination(state);
 			state.page = state.page > state.pages - 1 ? state.pages - 1 : state.page;
 		},
 		remove: (state, action) => {
@@ -55,9 +53,7 @@ const movieSlice = createSlice({
 				(state.tagsPool.splice(state.tagsPool.indexOf(cat), 1),
 				state.tagsActive.splice(state.tagsActive.indexOf(cat), 1));
 
-			state.pages = state.tagsActive.length ?
-				Math.ceil(state.movies.filter(movie => state.tagsActive.includes(movie.category)).length / state.pageSize) :
-				Math.ceil(state.movies.length / state.pageSize);
+			state.pages = computePagination(state);
 			state.page = state.page > state.pages - 1 ? state.pages - 1 : state.page;
 		},
 		toggleLike: (state, { payload }) => {
@@ -88,12 +84,7 @@ const movieSlice = createSlice({
 		},
 		setPageSize: (state, {payload}) => {
 			state.pageSize = payload;
-			state.pages = state.tagsActive.length ?
-				Math.ceil(state.movies.filter(movie => state.tagsActive.includes(movie.category)).length / state.pageSize) :
-				Math.ceil(state.movies.length / state.pageSize);
-		},
-		setPagesList: (state, {payload}) => {
-			state.pages = payload;
+			state.pages = computePagination(state);
 		}
 	},
 	extraReducers: (builder) => {
