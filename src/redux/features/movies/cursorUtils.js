@@ -1,20 +1,20 @@
-const computePagination = ({tagsActive, movies, pageSize}) => {
-	return tagsActive.length ?
-		Math.ceil(movies.filter(movie => tagsActive.includes(movie.category)).length / pageSize)
-		: Math.ceil(movies.length / pageSize);
+const computePagination = (state) => {
+	return state.tagsActive.length ?
+		Math.ceil(state.movies.filter(movie => state.tagsActive.includes(movie.category)).length / state.pageSize)
+		: Math.ceil(state.movies.length / state.pageSize);
 };
 
-const computeCursor = ({pageSize, activePage, movies, activeFilters}) => {
+const computeCursor = (state) => {
 	return (
-		movies.filter(m => activeFilters.length ? activeFilters.includes(m.category) : true)
-			.slice(activePage * pageSize, (activePage + 1) * pageSize)
+		state.movies.filter(m => state.activeFilters.length ? state.activeFilters.includes(m.category) : true)
+			.slice(state.activePage * state.pageSize, (state.activePage + 1) * state.pageSize)
 	);
 };
 
 const pageCheck = (state) => state.page > state.pages - 1 ? state.pages - 1 : state.page;
 
-export const refresh = (state) => {
-	state.pages = computePagination(state);
-	state.page = pageCheck(state);
-	state.cursor = computeCursor(state);
+export {
+	computePagination,
+	computeCursor,
+	pageCheck
 };

@@ -40,7 +40,7 @@ const Filters = () => {
 					<option value={12}>12</option>
 				</select>
 			</span>
-			{activePage+1 < pages && <button onClick={() => dispatch(setPage(activePage+1))}>Next</button>}
+			{activePage < pages-1 && <button onClick={() => dispatch(setPage(activePage+1))}>Next</button>}
 		</div>
 	);
 };
