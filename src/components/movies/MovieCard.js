@@ -47,8 +47,12 @@ const MovieCard = ({ movie }) => {
 				backgroundImage: `linear-gradient(to bottom, green 0% ${ratio*100}%, red ${100-(ratio*100)}% 100%)`,
 			}}
 		>
-			<b className="movieCardTitle">{movie.title}</b>
-			<span className="movieCardCategory">{movie.category} : ID{movie.id}</span>
+			<div className="movie-card-title">
+				<h5 className="movieCardTitle">{movie.title}</h5>
+				<p className="movieCardCategory">{movie.category}
+				</p>
+			</div>
+			<img></img>
 			<div className="movieCardUIControls">
 				{
 					(likedMovies.includes(movie.id) && <button className="liked" onClick={() => handleLike(-1)}>{likeSvg}</button>)

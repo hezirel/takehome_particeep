@@ -62,7 +62,7 @@ const movies = [
 	},
 	{
 		id: "11",
-		title: "Moonwalking my life",
+		title: "Planet Earth",
 		category: "Documentary",
 		likes: 22,
 		dislikes: 12
