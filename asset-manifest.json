@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/takehome_particeep/static/css/main.fcdb0606.css",
-    "main.js": "/takehome_particeep/static/js/main.4701b795.js",
+    "main.css": "/takehome_particeep/static/css/main.5c387d8d.css",
+    "main.js": "/takehome_particeep/static/js/main.80f3ac95.js",
     "index.html": "/takehome_particeep/index.html",
-    "main.fcdb0606.css.map": "/takehome_particeep/static/css/main.fcdb0606.css.map",
-    "main.4701b795.js.map": "/takehome_particeep/static/js/main.4701b795.js.map"
+    "main.5c387d8d.css.map": "/takehome_particeep/static/css/main.5c387d8d.css.map",
+    "main.80f3ac95.js.map": "/takehome_particeep/static/js/main.80f3ac95.js.map"
   },
   "entrypoints": [
-    "static/css/main.fcdb0606.css",
-    "static/js/main.4701b795.js"
+    "static/css/main.5c387d8d.css",
+    "static/js/main.80f3ac95.js"
   ]
 }
