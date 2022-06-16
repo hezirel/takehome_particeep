@@ -1,5 +1,6 @@
 import {
-	createSlice
+	createSlice,
+	createSelector,
 } from "@reduxjs/toolkit";
 
 import api from "../../api/fetch";
@@ -11,9 +12,26 @@ const initialState = {
 	likedMovies: [],
 	dislikedMovies: [],
 	pageSize: 4,
-	page: 0,
-	pages: 0,
+	page: 1,
+	pages: 1,
 };
+
+const pagesListSelector = createSelector(
+	state => state.movies,
+	state => state.movies.pageSize,
+	(movies, pageSize) => Math.ceil(movies.length / pageSize)
+);
+
+const moviesSelector = createSelector(
+	state => state.movies,
+	state => state.movies.tagsActive,
+	(movies, tagsActive) => {
+		if (tagsActive.length) {
+			return movies.filter(movie => tagsActive.includes(movie.category));
+		} else {
+			return movies;
+		}
+	});
 
 const movieSlice = createSlice({
 	name: "movie",
@@ -42,6 +60,7 @@ const movieSlice = createSlice({
 			state.pages = state.tagsActive.length ?
 				Math.ceil(state.movies.filter(movie => state.tagsActive.includes(movie.category)).length / state.pageSize) :
 				Math.ceil(state.movies.length / state.pageSize);
+			state.page = state.tagsActive.length ? 0 : state.page;
 		},
 		toggleLike: (state, { payload }) => {
 			const target = (id) => state.movies.find(movie => movie.id === id);
