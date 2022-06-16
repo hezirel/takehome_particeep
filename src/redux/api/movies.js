@@ -13,7 +13,7 @@ const movies = [
 		dislikes: 1
 	}, {
 		id: "3",
-		title: "Les indestructibles 2",
+		title: "The Incredibles",
 		category: "Animation",
 		likes: 3,
 		dislikes: 1
@@ -69,7 +69,7 @@ const movies = [
 	},
 	{
 		id: "12",
-		title: "H2G2",
+		title: "The hitchhiker's guide to the Galaxy",
 		category: "Sci-fi",
 		likes: 22,
 		dislikes: 12
@@ -83,7 +83,7 @@ const movies = [
 	},
 	{
 		id: "14",
-		title: "Las Vegas Parano",
+		title: "Fear and Loathing in Las Vegas",
 		category: "Noir",
 		likes: 22,
 		dislikes: 12
