@@ -91,7 +91,6 @@ export const {
 	toggleDislike,
 	setPage,
 	setPageSize,
-	setPagesList
 } = movieSlice.actions;
 
 export default movieSlice.reducer;
