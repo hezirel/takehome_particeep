@@ -9,8 +9,8 @@ const movies = [
 		id: "2",
 		title: "Midnight Sun",
 		category: "Drama",
-		likes: 2,
-		dislikes: 0
+		likes: 1,
+		dislikes: 1
 	}, {
 		id: "3",
 		title: "Les indestructibles 2",
