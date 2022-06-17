@@ -1,7 +1,7 @@
 const movies = [
 	{
 		id: "1",
-		title: "Oceans 8",
+		title: "Ocean's Eleven",
 		category: "Heist",
 		likes: 4,
 		dislikes: 1
