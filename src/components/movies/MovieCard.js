@@ -43,13 +43,13 @@ const MovieCard = ({ movie }) => {
 	};
 
 	const ratio = movie.likes / (movie.likes + movie.dislikes);
-	const { data } = useGetPosterQuery(movie.title);
+	const { data } = useGetPosterQuery(movie.title, movie.id);
 
 	return (
 		<div
 			className="movie-card"
 			style={{
-				backgroundImage: `linear-gradient(to bottom, green 0% ${ratio*100}%, red ${100-(ratio*100)}% 100%)`,
+				backgroundImage: `linear-gradient(to bottom, green 0% ${Math.ceil(ratio*100)}%, red ${Math.ceil(100-(ratio*100))}% 100%)`,
 			}}
 		>
 			<div className="movie-card-title">

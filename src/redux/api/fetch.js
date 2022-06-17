@@ -13,13 +13,14 @@ export const api = createApi({
 			providesTags: ["movies"],
 		}),
 		GetPoster: build.query({
-			query: (title) => ({
+			query: (title, id) => ({
 				url: "/",
 				method: "GET",
 				params: {
 					apiKey: "c20c6e76",
 					t: title
-				}
+				},
+				providesTags: [{type: "poster", id}]
 			})
 		})
 	})

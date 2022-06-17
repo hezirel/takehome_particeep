@@ -19,7 +19,7 @@ const movies = [
 		dislikes: 1
 	}, {
 		id: "4",
-		title: "Sans un bruit",
+		title: "Knives Out",
 		category: "Murder",
 		likes: 6,
 		dislikes: 6
