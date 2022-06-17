@@ -1,7 +1,7 @@
 const movies = [
 	{
 		id: "1",
-		title: "Ocean's Eleven",
+		title: "Ocean's Twelve",
 		category: "Heist",
 		likes: 4,
 		dislikes: 1
@@ -69,7 +69,7 @@ const movies = [
 	},
 	{
 		id: "12",
-		title: "The hitchhiker's guide to the Galaxy",
+		title: "12 angry men",
 		category: "Sci-fi",
 		likes: 22,
 		dislikes: 12
@@ -83,7 +83,7 @@ const movies = [
 	},
 	{
 		id: "14",
-		title: "Fear and Loathing in Las Vegas",
+		title: "Blade Runner",
 		category: "Noir",
 		likes: 22,
 		dislikes: 12
