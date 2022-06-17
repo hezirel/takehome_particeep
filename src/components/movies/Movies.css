@@ -19,7 +19,7 @@
 
 .movie-card img {
     width: 85%;
-    object-fit: fill;
+    object-fit: scale-down;
 }
 
 .movie-card-title {
