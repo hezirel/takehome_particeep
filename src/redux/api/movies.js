@@ -38,7 +38,7 @@ const movies = [
 	}, {
 		id: "7",
 		title: "Django Unchained",
-		category: "Tarentino",
+		category: "Tarantino",
 		likes: 12333,
 		dislikes: 32
 	}, {
@@ -70,21 +70,21 @@ const movies = [
 	{
 		id: "12",
 		title: "12 angry men",
-		category: "Sci-fi",
+		category: "Classic",
 		likes: 22,
 		dislikes: 12
 	},
 	{
 		id: "13",
 		title: "Harry Potter",
-		category: "Magical",
+		category: "Fantasy",
 		likes: 22,
 		dislikes: 12
 	},
 	{
 		id: "14",
 		title: "Blade Runner",
-		category: "Noir",
+		category: "Sci-Fi",
 		likes: 22,
 		dislikes: 12
 	},
