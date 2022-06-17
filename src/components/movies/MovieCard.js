@@ -49,7 +49,7 @@ const MovieCard = ({ movie }) => {
 		<div
 			className="movie-card"
 			style={{
-				backgroundImage: `linear-gradient(to bottom, green 0% ${Math.ceil(ratio*100)}%, red ${Math.ceil(100-(ratio*100))}% 100%)`,
+				backgroundImage: `linear-gradient(to bottom, darkblue 0% ${Math.ceil(ratio*100)}%, red ${Math.ceil(100-(ratio*100))}% 100%)`,
 			}}
 		>
 			<div className="movie-card-title">

@@ -11,7 +11,7 @@ const initialState = {
 	tagsActive: [],
 	likedMovies: [],
 	dislikedMovies: [],
-	pageSize: 12,
+	pageSize: 4,
 	page: 0,
 	pages: 1,
 };

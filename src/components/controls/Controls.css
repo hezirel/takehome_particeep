@@ -1,0 +1,33 @@
+.pageControls button {
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    color: lightblue;
+    border: solid 1px ghostwhite;
+    height: 3rem;
+    background-color: rgb(4, 22, 125);
+}
+
+.pageControls span {
+    background-color: black;
+    justify-content: center;
+}
+
+.pageControls select {
+    font-weight: bold;
+    font-size: 1.6rem;
+    border-radius: 5px;
+    border: none;
+    color: lightblue;
+    height: 2rem;
+    background-color: black;
+    justify-content: center;
+    text-align: center;
+}
+
+.pageControls label {
+    font-size: 1.2rem;
+    padding: 5px;
+    font-weight: bold;
+    color: lightblue;
+}

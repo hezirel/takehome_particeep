@@ -12,6 +12,8 @@ import {
 	setPageSize
 } from "../../redux/features/movies/movieSlice";
 
+import "./Controls.css";
+
 
 const Filters = () => {
 
@@ -23,7 +25,7 @@ const Filters = () => {
 
 	return (
 		<div className="pageControls">
-			<button disabled={activePage <= 0} onClick={() => dispatch(setPage(activePage-1))}>Prev</button>
+			<button disabled={activePage <= 0} onClick={() => dispatch(setPage(activePage-1))}>&lt;</button>
 			<span>
 				<select
 					name="pageSize"
@@ -40,7 +42,7 @@ const Filters = () => {
 				</select>
 				<label>Entry / pages</label>
 			</span>
-			<button disabled={activePage >= pages-1} onClick={() => dispatch(setPage(activePage+1))}>Next</button>
+			<button disabled={activePage >= pages-1} onClick={() => dispatch(setPage(activePage+1))}>&gt;</button>
 		</div>
 	);
 };

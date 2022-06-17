@@ -4,7 +4,7 @@
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px;
     justify-content: space-evenly;
-    background-color: lightgrey;
+    background-color: rgba(4, 69, 174, 0.538);
 }
 
 .movie-card {
@@ -13,12 +13,13 @@
     grid-auto-rows: 0.1fr 0.8fr 0.1fr;
     justify-items: center;
     align-items: center;
+    
     border-radius: 10px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
 .movie-card img {
-    width: 85%;
+    width: 90%;
     object-fit: scale-down;
 }
 
