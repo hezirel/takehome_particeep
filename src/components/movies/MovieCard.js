@@ -57,7 +57,7 @@ const MovieCard = ({ movie }) => {
 				<p className="movieCardCategory">{movie.category}
 				</p>
 			</div>
-			<img src={data && data.Poster}></img>
+			<img src={data && data.Poster}/>
 			<div className="movieCardUIControls">
 				{
 					(likedMovies.includes(movie.id) && <button className="liked" onClick={() => handleLike(-1)}>{likeSvg}</button>)
