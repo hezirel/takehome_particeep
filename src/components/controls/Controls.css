@@ -8,6 +8,11 @@
     background-color: rgb(4, 22, 125);
 }
 
+.pageControls button:disabled {
+    color: black;
+    background-color: lightgrey;
+}
+
 .pageControls span {
     background-color: black;
     justify-content: center;
